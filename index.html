@@ -24,6 +24,7 @@
         width: 70vw;
         height: 32px;
         margin-right: 6vw;
+        background-color: #409EFF;
       }
       .input-style input {
         width: 100%;
@@ -53,16 +54,16 @@
     <script>
       window.onload = function () {
         let obj = {
-          '1': {type: '早班', days: '1', name: '第1天早班'},
-          '2': {type: '早班', days: '2', name: '第2天早班'},
-          '3': {type: '早班', days: '3', name: '第3天早班'},
-          '4': {type: '晚班', days: '1', name: '第1天晚班'},
-          '5': {type: '晚班', days: '2', name: '第2天晚班'},
-          '6': {type: '晚班', days: '3', name: '第3天晚班'},
-          '7': {type: '休息', days: '1', name: '休息1天'},
-          '8': {type: '中班', days: '1', name: '第1天中班'},
-          '9': {type: '中班', days: '2', name: '第2天中班'},
-          '0': {type: '中班', days: '3', name: '第3天中班'},
+          '1': {type: ['morning'], days: '1', name: '第1天早班'},
+          '2': {type: ['morning'], days: '2', name: '第2天早班'},
+          '3': {type: ['morning', 'evening'], days: '3', name: '第3天早班,第一天晚班'},
+          '4': {type: ['evening'], days: '2', name: '第2天晚班'},
+          '5': {type: ['evening'], days: '3', name: '第3天晚班'},
+          '6': {type: ['relax'], days: '1', name: '休息1天'},
+          '7': {type: ['noon'], days: '1', name: '第1天中班'},
+          '8': {type: ['noon'], days: '2', name: '第2天中班'},
+          '9': {type: ['noon'], days: '3', name: '第3天中班'},
+          '0': {type: ['noon'], days: '3', name: '第3天中班'},
         }
         
         let startDate = '2022-07-14'
@@ -79,12 +80,12 @@
           let endD = new Date(dateVal.value).getTime()
           let dif = Math.abs((endD - startD) / (1000 * 60 * 60 * 24))
           if (endD >= startD) {
-            console.log('第' + (dif + 1) + '天', dif % 10)
-            let key = (dif + 1) % 10
+            console.log('第' + (dif + 1) + '天', dif % 9)
+            let key = (dif + 1) % 9
             alert(obj[key].name)
           } else {
-            console.log('第' + dif + '天', dif % 10)
-            let key = (11 - dif) % 10
+            console.log('第' + dif + '天', dif % 9)
+            let key = (11 - dif) % 9
             alert(obj[key].name)
           }
           
